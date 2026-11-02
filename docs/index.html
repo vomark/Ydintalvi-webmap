@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Ydintalvi web map</title>
-    <script type="module" crossorigin src="./assets/index-DjW2nozB.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-T_6X363h.css">
+    <script type="module" crossorigin src="./assets/index-CGrjWFPI.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DsIlcJC4.css">
   </head>
   <body>
     <div id="map" class="map"></div>
@@ -20,8 +20,13 @@
       <div id="popup-content"></div>
     </div>
 
-    <!-- Legend -->
+    <!-- Legend with scenario switch -->
     <div id="legend" class="legend">
+      <div class="scenario-switch" role="group" aria-label="Climate scenario">
+        <button type="button" class="scenario-btn active" data-scenario="rcp45" aria-pressed="true">RCP 4.5</button>
+        <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
+      </div>
+
       <strong>Riskiluokka</strong>
       <div><span class="swatch risk-1"></span>1</div>
       <div><span class="swatch risk-2"></span>2</div>
