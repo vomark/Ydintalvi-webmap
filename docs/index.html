@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Ydintalvi web map</title>
-    <script type="module" crossorigin src="./assets/index-DcuJ0gB_.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DuGCUKHe.css">
+    <script type="module" crossorigin src="./assets/index-GEZf8-0Z.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-TRfBLUo8.css">
   </head>
   <body>
     <div id="map" class="map"></div>
@@ -20,48 +20,114 @@
       <div id="popup-content"></div>
     </div>
 
-    <!-- Legend with scenario switch -->
-    <div id="legend" class="legend">
-      <div class="scenario-switch" role="group" aria-label="Climate scenario">
-        <button type="button" class="scenario-btn active" data-scenario="rcp45" aria-pressed="true">RCP 4.5</button>
-        <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
-      </div>
+    <!-- Bottom-left panel: info button on top, legend below it -->
+    <div class="left-panel">
 
-      <strong>Risk class</strong>
-      <div><span class="swatch risk-1"></span>1</div>
-      <div><span class="swatch risk-2"></span>2</div>
-      <div><span class="swatch risk-3"></span>3</div>
-      <div><span class="swatch risk-4"></span>4</div>
+      <!-- Abstract toggle via info button -->
+      <div class="map-info">
 
-      <div class="legend-section">
-        <label>
-          <input type="checkbox" id="toggle-zoning" checked>
-          <span class="swatch swatch-hatch"></span>Pending zoning plans
-        </label>
-        <label>
-          <input type="checkbox" id="toggle-buffer">
-          <span class="swatch swatch-buffer"></span>200 m buffer
-        </label>
-      </div>
+        <button
+          id="info-button"
+          class="info-button"
+          type="button"
+          aria-label="Show map abstract"
+          aria-expanded="false"
+          aria-controls="abstract-panel">
+          i
+        </button>
 
-      <div class="legend-section">
-        <strong>Flood water depth</strong>
-        <label>
-          <input type="checkbox" id="toggle-flood-rcp45">
-          RCP 4.5
-        </label>
-        <label>
-          <input type="checkbox" id="toggle-flood-rcp85">
-          RCP 8.5
-        </label>
-        <div id="flood-classes" class="flood-classes" hidden>
-          <div><span class="swatch flood-10"></span>10–20 cm</div>
-          <div><span class="swatch flood-20"></span>20–30 cm</div>
-          <div><span class="swatch flood-30"></span>30–40 cm</div>
-          <div><span class="swatch flood-40"></span>40–50 cm</div>
-          <div><span class="swatch flood-50"></span>over 50 cm</div>
+        <!-- Abstract panel that appears when toggled -->
+        <div id="abstract-panel" class="abstract-panel" hidden>
+
+          <h2>About this map</h2>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+
+          <p>
+            <strong>Data layers:</strong>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+          <p>
+            <em>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit (2026).
+              Source reference placeholder. Available at:
+            </em>
+
+            <a href="https://example.com"
+              target="_blank"
+              rel="noopener noreferrer">
+              example.com
+            </a>
+          </p>
+
         </div>
       </div>
+
+      <!-- Legend with scenario switch -->
+      <div id="legend" class="legend">
+        <div class="scenario-switch" role="group" aria-label="Climate scenario">
+          <button type="button" class="scenario-btn active" data-scenario="rcp45" aria-pressed="true">RCP 4.5</button>
+          <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
+        </div>
+
+        <strong>Total risk of statistical areas</strong>
+        <div class="ramp-vertical" aria-hidden="true">
+          <div class="ramp-row">
+            <span class="ramp-box area-1"></span>
+            <span class="ramp-label">Low risk</span>
+          </div>
+          <div class="ramp-row">
+            <span class="ramp-box area-2"></span>
+          </div>
+          <div class="ramp-row">
+            <span class="ramp-box area-3"></span>
+            <span class="ramp-label">Moderate risk</span>
+          </div>
+          <div class="ramp-row">
+            <span class="ramp-box area-4"></span>
+          </div>
+          <div class="ramp-row">
+            <span class="ramp-box area-5"></span>
+            <span class="ramp-label">High risk</span>
+          </div>
+        </div>
+
+
+        <div class="legend-section">
+          <label>
+            <input type="checkbox" id="toggle-zoning" checked>
+            <span class="swatch swatch-hatch"></span>Pending zoning plans
+          </label>
+          <div id="legend-buffer" class="legend-entry" hidden>
+            <span class="swatch swatch-buffer"></span>200 m buffer of the selected area
+          </div>
+        </div>
+
+        <div class="legend-section">
+          <strong>Flood water depth</strong>
+          <label>
+            <input type="checkbox" id="toggle-flood-rcp45">
+            RCP 4.5
+          </label>
+          <label>
+            <input type="checkbox" id="toggle-flood-rcp85">
+            RCP 8.5
+          </label>
+          <div id="flood-classes" class="flood-classes" hidden>
+            <div><span class="swatch flood-10"></span>10–20 cm</div>
+            <div><span class="swatch flood-20"></span>20–30 cm</div>
+            <div><span class="swatch flood-30"></span>30–40 cm</div>
+            <div><span class="swatch flood-40"></span>40–50 cm</div>
+            <div><span class="swatch flood-50"></span>over 50 cm</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </body>
