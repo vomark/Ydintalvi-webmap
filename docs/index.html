@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Ydintalvi web map</title>
-    <script type="module" crossorigin src="./assets/index-CGrjWFPI.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DsIlcJC4.css">
+    <script type="module" crossorigin src="./assets/index-DcuJ0gB_.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DuGCUKHe.css">
   </head>
   <body>
     <div id="map" class="map"></div>
@@ -27,7 +27,7 @@
         <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
       </div>
 
-      <strong>Riskiluokka</strong>
+      <strong>Risk class</strong>
       <div><span class="swatch risk-1"></span>1</div>
       <div><span class="swatch risk-2"></span>2</div>
       <div><span class="swatch risk-3"></span>3</div>
@@ -38,6 +38,29 @@
           <input type="checkbox" id="toggle-zoning" checked>
           <span class="swatch swatch-hatch"></span>Pending zoning plans
         </label>
+        <label>
+          <input type="checkbox" id="toggle-buffer">
+          <span class="swatch swatch-buffer"></span>200 m buffer
+        </label>
+      </div>
+
+      <div class="legend-section">
+        <strong>Flood water depth</strong>
+        <label>
+          <input type="checkbox" id="toggle-flood-rcp45">
+          RCP 4.5
+        </label>
+        <label>
+          <input type="checkbox" id="toggle-flood-rcp85">
+          RCP 8.5
+        </label>
+        <div id="flood-classes" class="flood-classes" hidden>
+          <div><span class="swatch flood-10"></span>10–20 cm</div>
+          <div><span class="swatch flood-20"></span>20–30 cm</div>
+          <div><span class="swatch flood-30"></span>30–40 cm</div>
+          <div><span class="swatch flood-40"></span>40–50 cm</div>
+          <div><span class="swatch flood-50"></span>over 50 cm</div>
+        </div>
       </div>
     </div>
 
