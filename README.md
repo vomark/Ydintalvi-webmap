@@ -1,6 +1,6 @@
 # Ydintalvi web map
 
-This is an interactive web map made for the geovisualisation challenge for the course MAAN7771.
+This is an interactive web map made for the geovisualisation challenge for the course MAAN7771 at the University of Turku.
 
 **[Open the web map](https://vomark.github.io/Ydintalvi-webmap/)**
 
