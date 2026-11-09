@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Ydintalvi web map</title>
-    <script type="module" crossorigin src="./assets/index-37XIMVh-.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B94SfuYb.css">
+    <script type="module" crossorigin src="./assets/index-C1IlJm-p.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B1RBqHsj.css">
   </head>
   <body>
     <div id="map" class="map"></div>
@@ -39,31 +39,61 @@
         <!-- Abstract panel that appears when toggled -->
         <div id="abstract-panel" class="abstract-panel" hidden>
 
-          <h2>About this map</h2>
+          <h2>How has the total risk been defined?</h2>
 
+          <h3>Step 1: Risk level of statistical areas based on grocery stores</h3>
+          <ol>
+            <li>
+              A risk class for each single grocery store was calculated based on weighted average
+              of flood polygons’ areas within 100 meters buffer around the store
+            </li>
+            <li>
+              Grocery stores for each statistical area were selected in overlay analysis between
+              area with its 200 meters buffer zone and grocery stores
+            </li>
+            <li>
+              The final risk level based on grocery stores was an average of single stores’ risk
+              within the area and the buffer zone (there was no risk level for areas without stores)
+            </li>
+          </ol>
+
+          <h3>Step 2: Socio-economic vulnerability of statistical areas in both scenarios</h3>
+          <ol>
+            <li>
+              Primary raster data was vectorized, and intersecting grids were defined for each
+              statistical area (every grid that falls even partially in the area)
+            </li>
+            <li>
+              The vulnerability value is an average of single grid values within the area
+            </li>
+          </ol>
+
+          <h3>Step 3: Total risk of statistical areas</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Total risk of statistical areas was calculated as an average of risk level based on
+            grocery stores (Step 1) and vulnerability value (Step 2)
           </p>
 
+          <h2>Data layers</h2>
           <p>
-            <strong>Data layers:</strong>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            The data used comes from Lounaistieto and is free to use under CC BY 4.0.
           </p>
-
-          <p>
-            <em>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit (2026).
-              Source reference placeholder. Available at:
-            </em>
-
-            <a href="https://example.com"
-              target="_blank"
-              rel="noopener noreferrer">
-              example.com
-            </a>
-          </p>
+          <ul>
+            <li>
+              <a href="https://avoindata.suomi.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Service points of Varsinais-Suomi and Satakunta (Avoindata.fi)
+              </a>
+            </li>
+            <li>
+              <a href="https://karttapalvelu.lounaistieto.fi/?lang=fi&amp;uuid=3815c4da-ba1d-4607-b04e-389d92fc071c"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Lounaistieto map service
+              </a>
+            </li>
+          </ul>
 
         </div>
       </div>
