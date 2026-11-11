@@ -2,162 +2,166 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ydintalvi web map</title>
-    <script type="module" crossorigin src="./assets/index-C1IlJm-p.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B1RBqHsj.css">
+    <script type="module" crossorigin src="./assets/index-Phe3ouZC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BHgseWmH.css">
   </head>
   <body>
-    <div id="map" class="map"></div>
 
-    <!-- Map title -->
+    <!-- Map title: full-width bar across the top -->
     <h1 class="map-title">
       Residents' essential services in the lens of flood risk: Comparative risk assessment of statistical areas in Turku based on grocery stores
     </h1>
 
-    <!-- Popup -->
-    <div id="popup" class="popup">
-      <button id="popup-closer" class="popup-closer" aria-label="Close">×</button>
-      <div id="popup-content"></div>
-    </div>
+    <!-- Everything below the title -->
+    <div class="map-area">
+      <div id="map" class="map"></div>
 
-    <!-- Bottom-left panel: info button on top, legend below it -->
-    <div class="left-panel">
-
-      <!-- Abstract toggle via info button -->
-      <div class="map-info">
-
-        <button
-          id="info-button"
-          class="info-button"
-          type="button"
-          aria-label="Show map abstract"
-          aria-expanded="false"
-          aria-controls="abstract-panel">
-          i
-        </button>
-
-        <!-- Abstract panel that appears when toggled -->
-        <div id="abstract-panel" class="abstract-panel" hidden>
-
-          <h2>How has the total risk been defined?</h2>
-
-          <h3>Step 1: Risk level of statistical areas based on grocery stores</h3>
-          <ol>
-            <li>
-              A risk class for each single grocery store was calculated based on weighted average
-              of flood polygons’ areas within 100 meters buffer around the store
-            </li>
-            <li>
-              Grocery stores for each statistical area were selected in overlay analysis between
-              area with its 200 meters buffer zone and grocery stores
-            </li>
-            <li>
-              The final risk level based on grocery stores was an average of single stores’ risk
-              within the area and the buffer zone (there was no risk level for areas without stores)
-            </li>
-          </ol>
-
-          <h3>Step 2: Socio-economic vulnerability of statistical areas in both scenarios</h3>
-          <ol>
-            <li>
-              Primary raster data was vectorized, and intersecting grids were defined for each
-              statistical area (every grid that falls even partially in the area)
-            </li>
-            <li>
-              The vulnerability value is an average of single grid values within the area
-            </li>
-          </ol>
-
-          <h3>Step 3: Total risk of statistical areas</h3>
-          <p>
-            Total risk of statistical areas was calculated as an average of risk level based on
-            grocery stores (Step 1) and vulnerability value (Step 2)
-          </p>
-
-          <h2>Data layers</h2>
-          <p>
-            The data used comes from Lounaistieto and is free to use under CC BY 4.0.
-          </p>
-          <ul>
-            <li>
-              <a href="https://avoindata.suomi.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Service points of Varsinais-Suomi and Satakunta (Avoindata.fi)
-              </a>
-            </li>
-            <li>
-              <a href="https://karttapalvelu.lounaistieto.fi/?lang=fi&amp;uuid=3815c4da-ba1d-4607-b04e-389d92fc071c"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Lounaistieto map service
-              </a>
-            </li>
-          </ul>
-
-        </div>
+      <!-- Popup -->
+      <div id="popup" class="popup">
+        <button id="popup-closer" class="popup-closer" aria-label="Close">×</button>
+        <div id="popup-content"></div>
       </div>
 
-      <!-- Legend with scenario switch -->
-      <div id="legend" class="legend">
-        <div class="scenario-switch" role="group" aria-label="Climate scenario">
-          <button type="button" class="scenario-btn active" data-scenario="rcp45" aria-pressed="true">RCP 4.5</button>
-          <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
-        </div>
+      <!-- Abstract panel (opens on the right side, toggled by the info button) -->
+      <div id="abstract-panel" class="abstract-panel" hidden>
 
-        <strong>Total risk of statistical areas</strong>
-        <div class="ramp-vertical" aria-hidden="true">
-          <div class="ramp-row">
-            <span class="ramp-box area-1"></span>
-            <span class="ramp-label">Low risk</span>
-          </div>
-          <div class="ramp-row">
-            <span class="ramp-box area-2"></span>
-          </div>
-          <div class="ramp-row">
-            <span class="ramp-box area-3"></span>
-            <span class="ramp-label">Moderate risk</span>
-          </div>
-          <div class="ramp-row">
-            <span class="ramp-box area-4"></span>
-          </div>
-          <div class="ramp-row">
-            <span class="ramp-box area-5"></span>
-            <span class="ramp-label">High risk</span>
-          </div>
-        </div>
 
-        <div class="legend-section">
-          <label>
-            <input type="checkbox" id="toggle-zoning" checked>
-            <span class="swatch swatch-hatch"></span>Pending zoning plans
-          </label>
-          <div id="legend-buffer" class="legend-entry" hidden>
-            <span class="swatch swatch-buffer"></span>200 m buffer of the selected area
-          </div>
-        </div>
+        <h2>How has the total risk been defined?</h2>
 
-        <div class="legend-section">
-          <strong>Flood water depth</strong>
-          <label>
-            <input type="checkbox" id="toggle-flood-rcp45">
-            RCP 4.5
-          </label>
-          <label>
-            <input type="checkbox" id="toggle-flood-rcp85">
-            RCP 8.5
-          </label>
-          <div id="flood-classes" class="flood-classes" hidden>
-            <div class="flood-caption">Water depth</div>
-            <div><span class="swatch flood-10"></span>10–20 cm</div>
-            <div><span class="swatch flood-20"></span>20–30 cm</div>
-            <div><span class="swatch flood-30"></span>30–40 cm</div>
-            <div><span class="swatch flood-40"></span>40–50 cm</div>
-            <div><span class="swatch flood-50"></span>over 50 cm</div>
-          </div>
-        </div>
+        <h3>Step 1: Risk level of statistical areas based on grocery stores</h3>
+        <ol>
+          <li>
+            A risk class for each single grocery store was calculated based on weighted average
+            of flood polygons’ areas within 100 meters buffer around the store
+          </li>
+          <li>
+            Grocery stores for each statistical area were selected in overlay analysis between
+            area with its 200 meters buffer zone and grocery stores
+          </li>
+          <li>
+            The final risk level based on grocery stores was an average of single stores’ risk
+            within the area and the buffer zone (there was no risk level for areas without stores)
+          </li>
+        </ol>
+
+        <h3>Step 2: Socio-economic vulnerability of statistical areas in both scenarios</h3>
+        <ol>
+          <li>
+            Primary raster data was vectorized, and intersecting grids were defined for each
+            statistical area (every grid that falls even partially in the area)
+          </li>
+          <li>
+            The vulnerability value is an average of single grid values within the area
+          </li>
+        </ol>
+
+        <h3>Step 3: Total risk of statistical areas</h3>
+        <p>
+          Total risk of statistical areas was calculated as an average of risk level based on
+          grocery stores (Step 1) and vulnerability value (Step 2)
+        </p>
+
+        <h2>Data layers</h2>
+        <p>
+          The data used comes from Lounaistieto and is free to use under CC BY 4.0.
+        </p>
+        <ul>
+          <li>
+            <a href="https://avoindata.suomi.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet"
+               target="_blank"
+               rel="noopener noreferrer">
+              Service points of Varsinais-Suomi and Satakunta (Avoindata.fi)
+            </a>
+          </li>
+          <li>
+            <a href="https://karttapalvelu.lounaistieto.fi/?lang=fi&amp;uuid=3815c4da-ba1d-4607-b04e-389d92fc071c"
+               target="_blank"
+               rel="noopener noreferrer">
+              Lounaistieto map service
+            </a>
+          </li>
+        </ul>
+
       </div>
 
+      <!-- Bottom-left panel: info button on top, legend below it -->
+      <div class="left-panel">
+
+        <div class="map-info">
+          <button
+            id="info-button"
+            class="info-button"
+            type="button"
+            aria-label="Show map abstract"
+            aria-expanded="false"
+            aria-controls="abstract-panel">
+            i
+          </button>
+        </div>
+
+        <!-- Legend with scenario switch -->
+        <div id="legend" class="legend">
+          <div class="scenario-switch" role="group" aria-label="Climate scenario">
+            <button type="button" class="scenario-btn active" data-scenario="rcp45" aria-pressed="true">RCP 4.5</button>
+            <button type="button" class="scenario-btn" data-scenario="rcp85" aria-pressed="false">RCP 8.5</button>
+          </div>
+
+          <strong>Total risk of statistical areas</strong>
+          <div class="ramp-vertical" aria-hidden="true">
+            <div class="ramp-row">
+              <span class="ramp-box area-1"></span>
+              <span class="ramp-label">Low risk</span>
+            </div>
+            <div class="ramp-row">
+              <span class="ramp-box area-2"></span>
+            </div>
+            <div class="ramp-row">
+              <span class="ramp-box area-3"></span>
+              <span class="ramp-label">Moderate risk</span>
+            </div>
+            <div class="ramp-row">
+              <span class="ramp-box area-4"></span>
+            </div>
+            <div class="ramp-row">
+              <span class="ramp-box area-5"></span>
+              <span class="ramp-label">High risk</span>
+            </div>
+          </div>
+
+          <div class="legend-section">
+            <label>
+              <input type="checkbox" id="toggle-zoning" checked>
+              <span class="swatch swatch-hatch"></span>Pending zoning plans
+            </label>
+            <div id="legend-buffer" class="legend-entry" hidden>
+              <span class="swatch swatch-buffer"></span>200 m buffer of the selected area
+            </div>
+          </div>
+
+          <div class="legend-section">
+            <strong>Flood water depth</strong>
+            <label>
+              <input type="checkbox" id="toggle-flood-rcp45">
+              RCP 4.5
+            </label>
+            <label>
+              <input type="checkbox" id="toggle-flood-rcp85">
+              RCP 8.5
+            </label>
+            <div id="flood-classes" class="flood-classes" hidden>
+              <div class="flood-caption">Water depth</div>
+              <div><span class="swatch flood-10"></span>10–20 cm</div>
+              <div><span class="swatch flood-20"></span>20–30 cm</div>
+              <div><span class="swatch flood-30"></span>30–40 cm</div>
+              <div><span class="swatch flood-40"></span>40–50 cm</div>
+              <div><span class="swatch flood-50"></span>over 50 cm</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </body>
